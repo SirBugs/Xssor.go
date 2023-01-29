@@ -15,6 +15,7 @@ Just need to install go, run:
 
 ```
 ▶ brew install go
+▶ git clone https://github.com/SirBugs/Xssor.go.git
 ```
 
 or download from https://go.dev/dl/
