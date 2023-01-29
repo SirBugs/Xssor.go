@@ -3,8 +3,11 @@ Xssor is XSS payloads reflections in source code checker.
 
 # Idea
 You give URLS with "?" from waybackurls,gau,katana,etc... To the tool
+
 The tool is replacing all the params values with KEY: "BAGOZAXSSOR>"
+
 It starts to check if "BAGOZAXSSOR" without ">" or with encoded(>) in page source
+
 Or full "BAGOZAXSSOR>" in the page source, So now there's a possibility for XSS Injection!
 
 # Installation
