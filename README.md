@@ -22,6 +22,36 @@ or download from https://go.dev/dl/
 # Usage:
 ```
 ▶ go run main.go file.txt
+
+		 /$$   /$$  /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$$                         
+		| $$  / $$ /$$__  $$ /$$__  $$ /$$__  $$| $$__  $$                        
+		|  $$/ $$/| $$  \__/| $$  \__/| $$  \ $$| $$  \ $$      /$$$$$$   /$$$$$$ 
+		 \  $$$$/ |  $$$$$$ |  $$$$$$ | $$  | $$| $$$$$$$/     /$$__  $$ /$$__  $$
+		  >$$  $$  \____  $$ \____  $$| $$  | $$| $$__  $$    | $$  \ $$| $$  \ $$
+		 /$$/\  $$ /$$  \ $$ /$$  \ $$| $$  | $$| $$  \ $$    | $$  | $$| $$  | $$
+		| $$  \ $$|  $$$$$$/|  $$$$$$/|  $$$$$$/| $$  | $$ /$$|  $$$$$$$|  $$$$$$/
+		|__/  |__/ \______/  \______/  \______/ |__/  |__/|__/ \____  $$ \______/ 
+		                                                       /$$  \ $$          
+		           Xssor Tool By @SirBugs .go Version         |  $$$$$$/          
+		               V: 1.0.1 Made With All Love             \______/           
+		      For Checking The XSS Reflections In The URLS 
+		           Twitter@SirBagoza / GitHub@SirBugs
+		                Run: go run main.go file
+
+[ ! ] This .go Version had posted on 30/1/2023 By @SirBugs
+[ ! ] XSSOR Results File Is Already Available, Checking Finished.
+[ ! ] Starting Running Now ..!
+
+[ $ ] :: XSS Vuln :- https://ibd.example.com/bb/SBCBBCELogin.jsp?uri=BAGOZAXSSOR>&bl=BAGOZAXSSOR>&menuItemId=BAGOZAXSSOR>&username=BAGOZAXSSOR>
+[ X ] :: Nothing :- http://www.example.com/bc/SBCBkModel.jsp?arc=BAGOZAXSSOR>&spid=BAGOZAXSSOR>
+[ * ] :: Reflection :- https://jira.example.com/login.jsp?os_destination=BAGOZAXSSOR>
+[ * ] :: Reflection :- https://jira.example.com/login.jsp?permissionViolation=BAGOZAXSSOR>&os_destination=BAGOZAXSSOR>&page_caps=BAGOZAXSSOR>&user_role=BAGOZAXSSOR>
+[ $ ] :: XSS Vuln :- https://ibd.example.com/bb/SBCBBCELogin.jsp?uri=BAGOZAXSSOR>&a=BAGOZAXSSOR>
+[ $ ] :: XSS Vuln :- https://ibd.example.com/bb/SBCBBBackOrder.jsp?itemFrm=BAGOZAXSSOR>&itemTo=BAGOZAXSSOR>
+[ * ] :: Reflection :- https://jira.example.com/login.jsp?nosso&os_destination=BAGOZAXSSOR>
+[ * ] :: Reflection :- https://jira.example.com/plugins/servlet/samlsso?tracker=BAGOZAXSSOR>&idp=BAGOZAXSSOR>&redirectTo=BAGOZAXSSOR>
+[ X ] :: Nothing :- http://www.example.com/bc/home.jsp?a=BAGOZAXSSOR>
+
 ```
 
 # One Line Command:
