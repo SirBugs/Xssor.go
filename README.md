@@ -12,14 +12,18 @@ Or full "BAGOZAXSSOR>" in the page source, So now there's a possibility for XSS 
 
 # Installation
 Just need to install go, run:
+
 ``` ▶ brew install go ```
+
 or download from https://go.dev/dl/
 
 # Usage:
 ``` ▶ go run main.go file.txt```
 
 # One Line Command:
+
 ``` ▶ cat domains.txt | waybackurls | tee waybackresults.txt; cat waybackresults.txt | grep "$domain" | grep "\?" > to_xssor.txt; go run main.go to_xssor.txt```
+
 // You can use Gau, HaKrawler, Katana, etc...
 
 # History
