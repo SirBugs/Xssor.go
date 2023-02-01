@@ -8,7 +8,8 @@ The tool is replacing all the params values with KEY: "BAGOZAXSSOR>"
 
 It starts to check if "BAGOZAXSSOR" without ">" or with encoded(>) in page source
 
-Or full "BAGOZAXSSOR>" in the page source, So now there's a possibility for XSS Injection!
+Or full "BAGOZAXSSOR>" in the page source!
+Cuz if the ">" is reflected without encoding, There's a possibility for XSS Injection! Start trying to inject Your XSS Payload!!
 
 # Installation
 Just need to install go, run:
