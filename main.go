@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"strings"
-	"os"
 	"bufio"
-	"log"
+	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
+	"strings"
 	"time"
 )
 
@@ -22,13 +22,13 @@ func logo() { // This func is for printing the tool logo, nothing else.
 	fmt.Println("\t\t|__/  |__/ \\______/  \\______/  \\______/ |__/  |__/|__/ \\____  $$ \\______/ ")
 	fmt.Println("\t\t                                                       /$$  \\ $$          ")
 	fmt.Println("\t\t           Xssor Tool By @SirBugs .go Version         |  $$$$$$/          ")
-	fmt.Println("\t\t               V: 1.0.1 Made With All Love             \\______/           ")
+	fmt.Println("\t\t               V: 1.0.4 Made With All Love             \\______/           ")
 	fmt.Println("\t\t      For Checking The XSS Reflections In The URLS ")
 	fmt.Println("\t\t           Twitter@SirBagoza / GitHub@SirBugs")
 	fmt.Println("\t\t                Run: go run main.go file\n")
 }
 
-var already_done []string; // A Slice To Store All The URLS, To Bypass The Duplicates.
+var already_done []string // A Slice To Store All The URLS, To Bypass The Duplicates.
 
 func DoesSliceContains(mySlice []string, myStr string) bool { // This func is specially created to check if the slice has an item! Cuz Golang doesn't have a function to do this job!
 	for _, Value := range mySlice {
@@ -60,7 +60,7 @@ func make_empty_url(URI string) string { // This func is for making an empty url
 	// fmt.Println(empty_url)
 
 	if strings.Contains(URI, "?") && strings.Contains(URI, "=") {
-		url_split := strings.Split(URI, "?") // Step.1 Of Spltting
+		url_split := strings.Split(URI, "?")       // Step.1 Of Spltting
 		params := strings.Split(url_split[1], "&") // Step.2 Of Splitting
 
 		for _, full_param := range params {
@@ -87,12 +87,12 @@ func make_url(URI string) string { // This func is created to replace all the pa
 	used_url := URI
 	empty_url := URI
 	if strings.Contains(used_url, "?") && strings.Contains(used_url, "=") {
-		url_split := strings.Split(URI, "?") // Step.1 Of Spltting
+		url_split := strings.Split(URI, "?")       // Step.1 Of Spltting
 		params := strings.Split(url_split[1], "&") // Step.2 Of Splitting
 
 		for _, full_param := range params {
 			if strings.Contains(full_param, "=") {
-				splitted_param := strings.Split(full_param, "=") // Step.3 Of Splitting
+				splitted_param := strings.Split(full_param, "=")                                                                    // Step.3 Of Splitting
 				used_url = strings.ReplaceAll(used_url, splitted_param[0]+"="+splitted_param[1], splitted_param[0]+"=BAGOZAXSSOR>") // Replacing All the params with my Key, Which is: "BAGOZAXSSOR>"
 				empty_url = strings.ReplaceAll(empty_url, splitted_param[0]+"="+splitted_param[1], "")
 			}
@@ -127,7 +127,7 @@ func req(URI string) { // This func is to make the GET request for all converted
 	}
 
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/109.0") // Setting To Real User-Agent
-	resp, err := client.Do(req) // Sending the request
+	resp, err := client.Do(req)                                                                                          // Sending the request
 	if resp == nil {
 		fmt.Printf("[ ! ] :: NotAvlbl :- %v\n", URI) // There's No Response? and we getting <nil>. So there's no source and this URL is not opening, Not Real, Not Live
 	} else {
@@ -137,14 +137,21 @@ func req(URI string) { // This func is to make the GET request for all converted
 		}
 		// fmt.Println(string(body))
 		f, err := os.OpenFile("xssor_rzlts.txt", os.O_APPEND|os.O_WRONLY, 0644) // Opening The Results File
-		if strings.Contains(string(body), "BAGOZAXSSOR>") { // Found XSS Full Reflection
+		// #Update: Added a fix of faking the xss alerts V 1.0.3
+		// Now It's checking if the StatusCode == 200 , Cuz if it's not 200 that mean that it's loading or redirecting or anything
+		// Which would may lead to faking an xss alert without encoding or something
+		if strings.Contains(string(body), "BAGOZAXSSOR>") && resp.StatusCode == 200 { // Found XSS Full Reflection
 			fmt.Printf("[ $ ] :: XSS Vuln :- %v\n", URI)
-			f.WriteString("[ $ ] XSS :: "+URI+"\n") // Appending Result !!
-		} else if strings.Contains(string(body), "BAGOZAXSSOR") { // Found Only Reflection For my Word: "BAGOZAXSSOR" But Without ">"
+			f.WriteString("[ $ ] XSS :: " + URI + "\n") // Appending Result !!
+		} else if strings.Contains(string(body), "BAGOZAXSSOR") && resp.StatusCode == 200 { // Found Only Reflection For my Word: "BAGOZAXSSOR" But Without ">"
 			fmt.Printf("[ * ] :: Reflection :- %v\n", URI)
-			f.WriteString("[ * ] Reflection :: "+URI+"\n") // Appending Result !!
+			f.WriteString("[ * ] Reflection :: " + URI + "\n") // Appending Result !!
 		} else { // Found No Reflections !!
 			fmt.Printf("[ X ] :: Nothing :- %v\n", URI)
+			// #Update: Removed the auto saving for the nothing V 1.0.2
+			// This would lead to making the file of rzlts big with no important data at all
+			// So I commented the nothing saving line, Which is then next one below:
+			// f.WriteString("[ * ] Nothing :: " + URI + "\n") // Appending Result !!
 		}
 		f.Close() // Closing My File.
 	}
@@ -163,8 +170,8 @@ func main() { // Main running Function
 	fmt.Println("[ ! ] This .go Version had posted on 30/1/2023 By @SirBugs")
 	rzlt_file() // (line:43)
 	fmt.Println("[ ! ] Starting Running Now ..!\n")
-	
-	file := os.Args[1] // Receiving Arg[1], Run as: ```go run main.go file.txt```
+
+	file := os.Args[1]           // Receiving Arg[1], Run as: ```go run main.go file.txt```
 	myFile, err := os.Open(file) // Opening The File
 	if err != nil {
 		log.Fatal(err)
@@ -178,7 +185,10 @@ func main() { // Main running Function
 			} else {
 				if make_url(newScanner.Text()) != "NotValidURL" && strings.Contains(make_url(newScanner.Text()), "=") { // Filter For Validating If It's Prefect URL or not.
 					go req(make_url(newScanner.Text())) // Using goroutines to make the requests faster!
-					time.Sleep(50 * time.Millisecond)
+					// #Update: Added a fix of faking the xss alerts V 1.0.4
+					// Increased the Sleeping time from 50 to 85, Cuz this in some cases if the website is caching or something
+					// This would may lead to faking the xss alerts
+					time.Sleep(85 * time.Millisecond)
 				} else {
 					fmt.Println("This time bypassed !!") // Output Print MSG Result For Not a Valid url, Not containing "?" and "="
 				}
@@ -191,4 +201,3 @@ func main() { // Main running Function
 	// and 7 cuz of the maximum timeout of each request is 5 seconds (line:113), to handle all the requests till the last one.
 
 }
-
